@@ -1,24 +1,23 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../Redux/hooks';
 import { setAnswer, setDirections, setField, setStart } from '../../../Redux/slices/gameSlice';
-import { X, Y } from '../../../utils/constants';
 import { getAnswerAndDirectoins, getFieldArray, getRandomCoordinate } from '../../../utils/helpers';
 import Cell, { CellI } from '../Cell/Cell';
 
 import './Field.scss';
 
-const Field = () => {
+const Field = (): JSX.Element => {
   const dispatch = useAppDispatch();
-  const { field } = useAppSelector((state) => state.game);
+  const { field, cordX, cordY } = useAppSelector((state) => state.game);
 
   useEffect(() => {
     getField();
   }, []);
 
   const getField = () => {
-    const field: CellI[][] = getFieldArray(X, Y);
-    const start: CellI = getRandomCoordinate();
-    const { startPosition: answer, directions } = getAnswerAndDirectoins(start);
+    const field: CellI[][] = getFieldArray(cordX, cordY);
+    const start: CellI = getRandomCoordinate(cordX, cordY);
+    const { startPosition: answer, directions } = getAnswerAndDirectoins(start, cordX, cordY);
 
     dispatch(setField(field));
     dispatch(setStart(start));

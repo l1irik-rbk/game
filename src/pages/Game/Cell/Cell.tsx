@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../Redux/hooks';
 import { setGameFinish, showCorrectAnswer } from '../../../Redux/slices/gameSlice';
 import './Cell.scss';
 
-const Cell = ({ x, y }: CellI) => {
+const Cell = ({ x, y }: CellI): JSX.Element => {
   const [newClass, setNewClass] = useState('ceil');
 
   const dispatch = useAppDispatch();

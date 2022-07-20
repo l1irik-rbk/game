@@ -9,6 +9,8 @@ type Game = {
   directions: Direction[];
   correctAnswer: boolean;
   gameFinish: boolean;
+  cordX: number;
+  cordY: number;
 };
 
 const initialState: Game = {
@@ -18,6 +20,8 @@ const initialState: Game = {
   directions: [],
   correctAnswer: false,
   gameFinish: false,
+  cordX: 3,
+  cordY: 3,
 };
 
 export const gameSlice = createSlice({
@@ -42,8 +46,22 @@ export const gameSlice = createSlice({
     setGameFinish: (state, action: PayloadAction<boolean>) => {
       state.gameFinish = action.payload;
     },
+    setXCord: (state, action: PayloadAction<number>) => {
+      state.cordX = action.payload;
+    },
+    setYCord: (state, action: PayloadAction<number>) => {
+      state.cordY = action.payload;
+    },
   },
 });
 
-export const { setField, setStart, setAnswer, setDirections, showCorrectAnswer, setGameFinish } =
-  gameSlice.actions;
+export const {
+  setField,
+  setStart,
+  setAnswer,
+  setDirections,
+  showCorrectAnswer,
+  setGameFinish,
+  setXCord,
+  setYCord,
+} = gameSlice.actions;

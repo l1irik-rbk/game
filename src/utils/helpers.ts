@@ -1,7 +1,7 @@
 import { CellI } from '../pages/Game/Cell/Cell';
-import { X, Y, DIRECTIONS } from './constants';
+import { Direction, DIRECTIONS } from './constants';
 
-export const getFieldArray = (x: number, y: number) => {
+export const getFieldArray = (x: number, y: number): CellI[][] => {
   const fieldArray = [];
   for (let i = 1; i <= x; i++) {
     const rowArray = [];
@@ -14,18 +14,22 @@ export const getFieldArray = (x: number, y: number) => {
   return fieldArray;
 };
 
-export const getRandomCoordinate = () => {
-  const coordinateX = Math.ceil(Math.random() * X);
-  const coordinateY = Math.ceil(Math.random() * Y);
+export const getRandomCoordinate = (xCord: number, yCord: number): CellI => {
+  const coordinateX = Math.ceil(Math.random() * xCord);
+  const coordinateY = Math.ceil(Math.random() * yCord);
 
   return { x: coordinateX, y: coordinateY };
 };
 
-export const getRandomDirection = () => {
+export const getRandomDirection = (): Direction => {
   return DIRECTIONS[Math.floor(Math.random() * DIRECTIONS.length)];
 };
 
-export const getAnswerAndDirectoins = (start: CellI) => {
+export const getAnswerAndDirectoins = (
+  start: CellI,
+  xCord: number,
+  yCord: number
+): { startPosition: CellI; directions: Direction[] } => {
   const directions = [];
   const totalDirections = 10;
   const startPosition = { ...start };
@@ -36,8 +40,8 @@ export const getAnswerAndDirectoins = (start: CellI) => {
     const startX = startPosition.x + x;
     const startY = startPosition.y + y;
 
-    if (startX > X || startY > Y || startX < 1 || startY < 1) {
-      const { direction, position } = getNewCords(startPosition);
+    if (startX > xCord || startY > yCord || startX < 1 || startY < 1) {
+      const { direction, position } = getNewCords(startPosition, xCord, yCord);
 
       startPosition.x = position.x;
       startPosition.y = position.y;
@@ -52,7 +56,11 @@ export const getAnswerAndDirectoins = (start: CellI) => {
   return { startPosition, directions };
 };
 
-const getNewCords = (startPosition: CellI) => {
+const getNewCords = (
+  startPosition: CellI,
+  xCord: number,
+  yCord: number
+): { position: CellI; direction: Direction } => {
   const direction = getRandomDirection();
   const { x, y } = direction.coords;
   const position = { ...startPosition };
@@ -60,8 +68,8 @@ const getNewCords = (startPosition: CellI) => {
   const startX = position.x + x;
   const startY = position.y + y;
 
-  if (startX > X || startY > Y || startX < 1 || startY < 1) {
-    getNewCords(startPosition);
+  if (startX > xCord || startY > yCord || startX < 1 || startY < 1) {
+    getNewCords(startPosition, xCord, yCord);
   } else {
     position.x = startX;
     position.y = startY;

@@ -2,7 +2,7 @@ import { useAppSelector } from '../../../Redux/hooks';
 
 import './Directions.scss';
 
-const Directions = () => {
+const Directions = (): JSX.Element => {
   const { directions } = useAppSelector((state) => state.game);
 
   return (

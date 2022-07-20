@@ -5,7 +5,7 @@ import Game from './pages/Game/Game';
 import Main from './pages/Main/Main';
 import Page404 from './pages/Page404/Page404';
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
