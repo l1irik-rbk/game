@@ -1,0 +1,17 @@
+.directions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  flex-wrap: wrap;
+}
+
+.direction {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background-color: aqua;
+  margin: 10px;
+  text-align: center;
+  line-height: 64px;
+}

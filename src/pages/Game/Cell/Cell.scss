@@ -1,0 +1,18 @@
+.ceil {
+  background-color: rgb(211, 160, 21);
+  border-radius: 20px;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 64px;
+}
+
+.ceil--correct {
+  background-color: rgb(54, 228, 20);
+}
+
+.ceil--wrong {
+  background-color: rgb(221, 12, 12);
+}
