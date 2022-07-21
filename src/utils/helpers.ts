@@ -37,6 +37,7 @@ export const getAnswerAndDirectoins = (
   for (let i = 0; i < totalDirections; i++) {
     const direction = getRandomDirection();
     const { x, y } = direction.coords;
+
     const startX = startPosition.x + x;
     const startY = startPosition.y + y;
 
@@ -60,7 +61,7 @@ const getNewCords = (
   startPosition: CellI,
   xCord: number,
   yCord: number
-): { position: CellI; direction: Direction } => {
+): { direction: Direction; position: CellI } => {
   const direction = getRandomDirection();
   const { x, y } = direction.coords;
   const position = { ...startPosition };
@@ -69,11 +70,17 @@ const getNewCords = (
   const startY = position.y + y;
 
   if (startX > xCord || startY > yCord || startX < MIN_X || startY < MIN_Y) {
-    getNewCords(startPosition, xCord, yCord);
-  } else {
-    position.x = startX;
-    position.y = startY;
-  }
+    const coords: { direction: Direction; position: CellI } = getNewCords(
+      startPosition,
+      xCord,
+      yCord
+    );
 
-  return { position, direction };
+    return coords;
+  } else {
+    position.x += x;
+    position.y += y;
+
+    return { direction, position };
+  }
 };
