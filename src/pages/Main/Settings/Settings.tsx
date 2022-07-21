@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../../../Redux/hooks';
 import { setXCord, setYCord } from '../../../Redux/slices/gameSlice';
+import { MAX_NUMBER, MIN_NUMBER } from '../../../utils/constants';
 
 import './Settings.scss';
 
@@ -22,13 +23,25 @@ const Settings = (): JSX.Element => {
       <div className="setting">
         <label>
           Введите минимальное чсило клеток по X:
-          <input type="number" min={3} max={20} onChange={handleInputX} value={cordX} />
+          <input
+            type="number"
+            min={MIN_NUMBER}
+            max={MAX_NUMBER}
+            onChange={handleInputX}
+            value={cordX}
+          />
         </label>
       </div>
       <div className="setting">
         <label>
           Введите минимальное чсило клеток по Y:
-          <input type="number" min={3} max={20} onChange={handleInputY} value={cordY} />
+          <input
+            type="number"
+            min={MIN_NUMBER}
+            max={MAX_NUMBER}
+            onChange={handleInputY}
+            value={cordY}
+          />
         </label>
       </div>
     </div>

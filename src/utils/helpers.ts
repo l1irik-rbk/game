@@ -1,5 +1,5 @@
 import { CellI } from '../pages/Game/Cell/Cell';
-import { Direction, DIRECTIONS } from './constants';
+import { Direction, DIRECTIONS, MIN_X, MIN_Y } from './constants';
 
 export const getFieldArray = (x: number, y: number): CellI[][] => {
   const fieldArray = [];
@@ -40,7 +40,7 @@ export const getAnswerAndDirectoins = (
     const startX = startPosition.x + x;
     const startY = startPosition.y + y;
 
-    if (startX > xCord || startY > yCord || startX < 1 || startY < 1) {
+    if (startX > xCord || startY > yCord || startX < MIN_X || startY < MIN_Y) {
       const { direction, position } = getNewCords(startPosition, xCord, yCord);
 
       startPosition.x = position.x;
@@ -68,7 +68,7 @@ const getNewCords = (
   const startX = position.x + x;
   const startY = position.y + y;
 
-  if (startX > xCord || startY > yCord || startX < 1 || startY < 1) {
+  if (startX > xCord || startY > yCord || startX < MIN_X || startY < MIN_Y) {
     getNewCords(startPosition, xCord, yCord);
   } else {
     position.x = startX;
